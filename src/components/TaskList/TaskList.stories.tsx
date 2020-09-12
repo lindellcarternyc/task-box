@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { TaskListComponent as TaskList } from './TaskList'
-import * as TaskStories from './Task/Task.stories'
-import { TaskModel } from '../models/task.model'
-import { createStory } from '../story.utils'
+import TaskList from './TaskList.component'
+import * as TaskStories from '../Task/Task.stories'
+import { TaskModel } from '../../models/task.model'
+import { createStory } from '../../story.utils'
 
 export default {
   component: TaskList,

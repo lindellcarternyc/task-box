@@ -1,10 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { AppAction, AppState, archiveTask, pinTask } from '../lib/redux'
 
-import { TaskModel } from '../models/task.model'
-import Task from './Task'
 
+import { TaskModel } from '../../models/task.model'
+import Task from '../Task'
 
 interface TaskListProps {
   loading: boolean
@@ -20,7 +18,7 @@ const LoadingRow = (
       <span>Loading</span> <span>cool</span> <span>state</span>
     </span>
   </div>
-);
+)
 
 const Loading = (
   <div className="list-items">
@@ -43,7 +41,7 @@ const Empty = (
   </div>
 )
 
-export const TaskListComponent: React.FC<TaskListProps> = ({ loading, tasks, onArchiveTask, onPinTask }) => {
+const TaskListComponent: React.FC<TaskListProps> = ({ loading, tasks, onArchiveTask, onPinTask }) => {
   const events = {
     onPinTask,
     onArchiveTask
@@ -67,15 +65,4 @@ export const TaskListComponent: React.FC<TaskListProps> = ({ loading, tasks, onA
   )
 }
 
-const TaskList = connect(
-  ({ tasks, loading }: AppState ): Pick<AppState, 'tasks' | 'loading'> => ({
-    tasks: tasks.filter(t => t.state === 'TASK_INBOX' || t.state === 'TASK_PINNED'),
-    loading
-  }),
-  (disaptch: React.Dispatch<AppAction>) => ({
-    onArchiveTask: (id: string) => disaptch(archiveTask(id)),
-    onPinTask: (id: string) => disaptch(pinTask(id))
-  })
-)(TaskListComponent)
-
-export default TaskList
+export default TaskListComponent
