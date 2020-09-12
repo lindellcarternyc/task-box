@@ -1,7 +1,8 @@
 import React from 'react'
-// import { TaskListModel } from '../models/task-list.model'
-import { TaskModel } from '../models/task.model'
+import { connect } from 'react-redux'
+import { AppAction, AppState, archiveTask, pinTask } from '../lib/redux'
 
+import { TaskModel } from '../models/task.model'
 import Task from './Task'
 
 
@@ -41,7 +42,8 @@ const Empty = (
     </div>
   </div>
 )
-const TaskList: React.FC<TaskListProps> = ({ loading, tasks, onArchiveTask, onPinTask }) => {
+
+export const TaskListComponent: React.FC<TaskListProps> = ({ loading, tasks, onArchiveTask, onPinTask }) => {
   const events = {
     onPinTask,
     onArchiveTask
@@ -64,5 +66,16 @@ const TaskList: React.FC<TaskListProps> = ({ loading, tasks, onArchiveTask, onPi
     </div>
   )
 }
+
+const TaskList = connect(
+  ({ tasks, loading }: AppState ): Pick<AppState, 'tasks' | 'loading'> => ({
+    tasks: tasks.filter(t => t.state === 'TASK_INBOX' || t.state === 'TASK_PINNED'),
+    loading
+  }),
+  (disaptch: React.Dispatch<AppAction>) => ({
+    onArchiveTask: (id: string) => disaptch(archiveTask(id)),
+    onPinTask: (id: string) => disaptch(pinTask(id))
+  })
+)(TaskListComponent)
 
 export default TaskList

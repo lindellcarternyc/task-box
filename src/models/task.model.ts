@@ -6,3 +6,10 @@ export interface TaskModel {
   state: TaskState
   updatedAt: Date
 }
+
+export const createTaskModel = (args: Omit<TaskModel, 'updatedAt'>): TaskModel => {
+  return {
+    ...args,
+    updatedAt: new Date()
+  }
+}
