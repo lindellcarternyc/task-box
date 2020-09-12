@@ -1,8 +1,8 @@
 import React from 'react'
-import { TaskModel } from '../models/task.model'
-import { createStory } from '../story.utils'
+import { TaskModel } from '../../models/task.model'
+import { createStory } from '../../story.utils'
 
-import Task from './Task'
+import Task from '.'
 
 export default {
   component: Task,
