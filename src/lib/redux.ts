@@ -64,3 +64,5 @@ const reducer = (state: AppState = INITIAL_APP_STATE, action: AppAction): AppSta
 const store = createStore(reducer, INITIAL_APP_STATE)
 
 export default store
+
+export type AppDispatch = React.Dispatch<AppAction>
