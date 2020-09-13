@@ -4,6 +4,7 @@ import { createTaskModel, TaskModel, TaskState } from '../models/task.model'
 export interface AppState {
   tasks: TaskModel[],
   loading: boolean
+  error?: string
 }
 
 export const TASK_ACTION_TYPES = {
@@ -41,7 +42,8 @@ const DEFAULT_TASKS: TaskModel[] = [
 
 const INITIAL_APP_STATE: AppState = {
   tasks: DEFAULT_TASKS,
-  loading: false
+  loading: false,
+  error: undefined
 }
 
 const reducer = (state: AppState = INITIAL_APP_STATE, action: AppAction): AppState => {

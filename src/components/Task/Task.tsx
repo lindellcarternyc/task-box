@@ -1,5 +1,5 @@
 import React from 'react'
-import { TaskModel } from '../models/task.model'
+import { TaskModel } from '../../models/task.model'
 
 interface TaskProps {
   task: TaskModel
